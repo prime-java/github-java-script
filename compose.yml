@@ -1,0 +1,7 @@
+services:
+  github-java-script:
+    container_name: github-java-script
+    build:
+      context: .
+    environment:
+      test: test
