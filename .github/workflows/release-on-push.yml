@@ -9,6 +9,8 @@ jobs:
     permissions:
       contents: write
       pull-requests: read
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - id: release
         uses: rymndhng/release-on-push-action@v0.28.0
