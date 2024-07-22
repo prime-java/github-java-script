@@ -4,4 +4,11 @@ services:
     build:
       context: .
     environment:
-      test: test
+      DEPENDENCIES: |
+        <dependencies>
+    
+        </dependencies>
+      JAVA_SCRIPT: |
+        public static void main(String[] args) {
+            System.out.println("Hello world!");
+        }

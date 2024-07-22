@@ -1,16 +1,28 @@
-# action.yml
 name: 'GitHub Java Script'
-description: 'Greet someone and record the time'
+description: 'Run simple scripts using Java language'
+branding:
+  color: blue
+  icon: code
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
+  dependencies:
+    description: 'Dependencies for maven'
+    required: false
+    default: |
+      <dependencies> 
+      </dependencies>
+  java-script:
+    description: 'Java script'
+    required: false
+    default: |
+      public static void main(String[] args) {
+          System.out.println("Hello world!");
+      }
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  result:
+    description: The return value of the java script
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.who-to-greet }}
+  env:
+    DEPENDENCIES: ${{ inputs.dependencies }}
+    JAVA_SCRIPT: ${{ inputs.java-script }}

@@ -1,8 +1,11 @@
-# Container image that runs your code
-FROM alpine:3.10
+FROM maven:3.9.8-amazoncorretto-21
 
-# Copies your code file from your action repository to the filesystem path `/` of the container
-COPY entrypoint.sh /entrypoint.sh
+RUN yum install -y gettext
 
-# Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["/entrypoint.sh"]
+WORKDIR /code
+
+COPY pom.xml.template pom.xml.template
+COPY GitHubJavaScript.java.template GitHubJavaScript.java.template
+COPY entrypoint.sh entrypoint.sh
+
+ENTRYPOINT ["/code/entrypoint.sh"]
